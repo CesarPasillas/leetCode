@@ -1,6 +1,4 @@
-package com.programmer.squirrel.arrays;
-
-import java.util.Arrays;
+package com.programmer.squirrel.top;
 
 /**
  * Created for the LeetCode Algorithms project.
@@ -15,7 +13,6 @@ import java.util.Arrays;
 public class RotateImage {
 
     public void rotate(int[][] matrix) {
-        //System.out.println(matrix.length / 2);
         int n = matrix.length;
 
         for (int i = 0; i < n; i++) {
@@ -43,6 +40,27 @@ public class RotateImage {
             start++;
             end--;
         }
+    }
+
+
+    public void rotateBest(int[][] matrix) {
+
+        int len = matrix.length - 1;
+
+        for(int i = 0; i < (matrix.length + 1) /2; i++){
+            for(int j = 0; j < matrix.length/2; j++){
+                int tmp = matrix[i][j];
+                //topL = botL
+                matrix[i][j] = matrix[len - j][i];
+                //botL = botR
+                matrix[matrix.length - 1 -j][i] = matrix[len - i][len - j];
+                //botR = topR
+                matrix[matrix.length - 1 - i][len - j] = matrix[j][len - i];
+                //topR = tmp
+                matrix[j][len - i] = tmp;
+            }
+        }
+
     }
 
 }
